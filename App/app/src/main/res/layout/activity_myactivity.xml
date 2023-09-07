@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    style="@style/XUILayout"
+    tools:context=".ui.MyActivityActivity"
+    android:orientation="vertical"
+    android:background="#D2F6F6">
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/refreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        app:srlEnableAutoLoadMore="true"
+        app:srlEnableLoadMore="true">
+
+        <com.scwang.smartrefresh.header.MaterialHeader
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:overScrollMode="never"
+            tools:listitem="@layout/adapter_news_edit_list_item" />
+
+        <!--        <com.xuexiang.xuidemo.widget.MaterialFooter-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content" />-->
+
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+    <Button
+        android:id="@+id/Button12"
+        android:text="这是一个活动评价的例子"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"></Button>
+</LinearLayout>

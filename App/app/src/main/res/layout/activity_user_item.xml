@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"></TextView>
+    <TextView
+        android:id="@+id/password"
+        app:layout_constraintTop_toBottomOf="@+id/username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"></TextView>
+    <TextView
+        android:id="@+id/name"
+        app:layout_constraintTop_toBottomOf="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"></TextView>
+
+    <TextView
+        android:id="@+id/email"
+        app:layout_constraintTop_toBottomOf="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"></TextView>
+    <TextView
+        android:id="@+id/telephone"
+        app:layout_constraintTop_toBottomOf="@+id/email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"></TextView>
+    <TextView
+        android:id="@+id/birthday"
+        app:layout_constraintTop_toBottomOf="@+id/telephone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"></TextView>
+
+    <TextView
+        android:id="@+id/sex"
+        app:layout_constraintTop_toBottomOf="@+id/birthday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"></TextView>
+    <TextView
+        android:id="@+id/initdate"
+        app:layout_constraintTop_toBottomOf="@+id/sex"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"></TextView>
+    <TextView
+        android:id="@+id/classRoom"
+        app:layout_constraintTop_toBottomOf="@+id/initdate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"></TextView>
+    <TextView
+        android:id="@+id/faculty"
+        app:layout_constraintTop_toBottomOf="@+id/classRoom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"></TextView>
+    <TextView
+        android:id="@+id/imgpath"
+        app:layout_constraintTop_toBottomOf="@+id/faculty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"></TextView>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

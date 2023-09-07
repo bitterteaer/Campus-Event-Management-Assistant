@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户数据</title>
+
+    <link rel="stylesheet" href="css/backstage.css">
+    <script type="text/javascript" src="js/JQ.js"></script>
+
+    <!--添加删除专家-->
+    <script type="text/javascript">
+        $(function () {
+            var show_count = 20;   //要显示的条数
+            var count = 1;    //递增的开始值，这里是你的ID
+            $("#btn_addtr").click(function () {
+
+                var length = $("#dynamicTable tbody tr").length;
+                //alert(length);
+                if (length < show_count)    //点击时候，如果当前的数字小于递增结束的条件
+                {
+                    $("#tab11 tbody tr").clone().appendTo("#dynamicTable tbody");   //在表格后面添加一行
+                    changeIndex();//更新行号
+                }
+            });
+
+
+        });
+        function changeIndex() {
+            var i = 1;
+            $("#dynamicTable tbody tr").each(function () { //循环tab tbody下的tr
+                $(this).find("input[name='NO']").val(i++);//更新行号
+            });
+        }
+
+        function deltr(opp) {
+            var length = $("#dynamicTable tbody tr").length;
+            //alert(length);
+            if (length <= 1) {
+                alert("至少保留一行");
+            } else {
+                $(opp).parent().parent().remove();//移除当前行
+                changeIndex();
+            }
+        }
+    </script>
+</head>
+<body>
+
+<div class="fr w100">
+    <!--<div class="title_add"><a href="#" id="btn_addtr" ><span>新增</span></a></div>-->
+    <div class="content_mm">
+        <!--<table border="1" class="table_100 text_align_l"  id="tab11" style="display: none">-->
+            <!--<tbody>-->
+            <!--<tr>-->
+                <!--<td><input type="text" name="NO" size="2" value="1" /></td>-->
+                <!--<td>姓名</td>-->
+                <!--<td><input type="text" placeholder="请输入专家姓名" class="expert_inp_w100"></td>-->
+                <!--<td><input type="text" placeholder="请输入所属公司" class="expert_inp_w100"></td>-->
+                <!--<td><input type="text" placeholder="请输入职称职务" class="expert_inp_w100"></td>-->
+                <!--<td><input type="text" placeholder="请输入身份证号" class="expert_inp_w100"></td>-->
+                <!--<td><input type="text" placeholder="请输入手机号" class="expert_inp_w100"></td>-->
+                <!--<td><a href="#" class="td_a_3" id="Button2" onClick="deltr(this)">删除</a></td>-->
+            <!--</tr>-->
+            <!--</tbody>-->
+        <!--</table>-->
+
+        <table border="1" class="table_100 text_align_l" id="dynamicTable">
+            <thead>
+            <tr>
+                <th width="10%">ID</th>
+                <!-- <th width="10%">用户名</th> -->
+                <th width="20%">活动名</th>
+                <th width="30%">活动内容</th>
+                <th width="10%">主讲人</th>
+                <th width="10%">电话</th>
+                <!--<th width="10%">活动名</th>-->
+                <th width="20%">报名时间</th>
+            </tr>
+            </thead>
+            <tbody id="mainData">
+            <tr>
+                <td>加载中...</td>
+                <!--<td><input type="text" name="NO" size="2" value="1" /></td>-->
+                <!--<td>代表</td>-->
+                <!--<td><input type="text" placeholder="请输入姓名" class="expert_inp_w100"></td>-->
+                <!--<td><input type="text" placeholder="请输入所属公司" class="expert_inp_w100"></td>-->
+                <!--<td><input type="text" placeholder="请输入职称职务" class="expert_inp_w100"></td>-->
+                <!--<td><input type="text" placeholder="请输入身份证号" class="expert_inp_w100"></td>-->
+                <!--<td><input type="text" placeholder="请输入手机号" class="expert_inp_w100"></td>-->
+                <!--<td><a href="#" class="td_a_3" id="Button2" onClick="deltr(this)">删除</a></td>-->
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+<!-- <p id="testData"><p> -->
+</body>
+<script src="js/JQ.js"></script>
+<script>
+    //TODO UserData
+    $.post(
+        "http://106.54.189.155:8080/ActivityAboutLoginTeacher",
+        // "http://100.2.203.137:8080/ActivityAboutLoginTeacher",
+        {
+		},
+        function (data,states) {
+			// alert(data);
+			// console.log(data);
+			// document.getElementById("testData").innerHTML=data;
+            var jsonArrary = JSON.parse(data);
+            var str = "";
+
+            for(var i = 0; i < jsonArrary.length; i++){
+                var activityId = jsonArrary[i].activityId;
+                var activityName = jsonArrary[i].activityName;
+                var summery = jsonArrary[i].summery;
+                var inChargeID = jsonArrary[i].inChargeID;
+                var inChargeNB = jsonArrary[i].inChargeNB;
+                var ativityTime = jsonArrary[i].ativityTime;
+                // var birthday = jsonArrary[i].birthday;
+                // var sex = jsonArrary[i].sex;
+                // var initdate = jsonArrary[i].initdate;
+
+                str += "<tr>" +
+                    "   <td>"+activityId+"</td>" +
+                    // "   <td>"+username+"</td>" +
+                    "  <td>"+activityName+"</td>" +
+                    "  <td>"+summery+"</td>" +
+                    "  <td>"+inChargeID+"</td>" +
+                    "    <td>"+inChargeNB+"</td>" +
+                    "    <td>"+ativityTime+"</td>" +
+                    // "    <td>"+initdate+"</td>" +
+                    "  </tr>";
+            }
+
+            document.getElementById("mainData").innerHTML=str;
+        }
+    );
+</script>
+</html>

@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<c3p0-config>
+    <default-config>
+        <property name="user">actorg</property>
+        <property name="password">123456</property>
+        <property name="driverClass">com.mysql.cj.jdbc.Driver</property>
+        <property name="jdbcUrl">jdbc:mysql://106.54.189.155:3306/actorg</property>
+        <!-- 当连接池中等待时间耗尽时，c3p0可以获取的最大连接数 -->
+        <property name="acquireIncrement">5</property>
+        <!-- 最小连接数 -->
+        <property name="min">10</property>
+        <!-- 最大连接数 -->
+        <property name="max">20</property>
+    </default-config>
+    <!--<name-config>-->
+        <!---->
+    <!--</name-config>-->
+</c3p0-config>

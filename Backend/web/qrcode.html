@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>二维码</title>
+
+    <script type="text/javascript" src="js/JQ.js"></script>
+</head>
+<body>
+    <!--TODO QRServlet-->
+    <form action="http://localhost:8080/QRServlet">
+        <!--<form action="http://106.54.189.155:8080/QRServlet">-->
+        <input type="text" id="qrstring" name="qrstring" >
+<!--        <input id="imagecode" type="image" src="/testServlet" alt="点击获取验证码" onclick="reloadCode()">-->
+        <button type="submit">点我</button>
+    </form>
+    <!--<img onclick="test()" src="/QRServlet">-->
+    <div class="col-sm-2">
+
+    </div>
+</body>
+
+<!--<script type="text/javascript">-->
+<!--    function reloadCode()-->
+<!--    {-->
+<!--        document.getElementById("imagecode").src="/testServlet";-->
+<!--    }-->
+<!--</script>-->
+<!--<script>-->
+    <!--var test = function (){-->
+        <!--var qrstring = document.getElementById("qrstring").value;-->
+        <!--// UserData-->
+
+        <!--// $.post(-->
+        <!--//     "http://localhost:8080/",-->
+        <!--//     {-->
+        <!--//         "qrstring":qrstring-->
+        <!--//     },-->
+        <!--//     function (data,states) {-->
+        <!--//         var jsonArrary = JSON.parse(data);-->
+        <!--//         alert("运行新");-->
+        <!--//         document.getElementById("imagecode").src=jsonArrary;-->
+        <!--//     }-->
+        <!--// );-->
+    <!--}-->
+<!--</script>-->
+</html>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+
+<!-- 
+namespace：名称空间 不能随便写，要指定为接口的全类名
+id:唯一标识
+resultType:返回值类型
+#{id}:从传递过来的参数取出id值
+ -->
+<mapper namespace="com.xxx.dao.LogMapper">
+
+	<select id="getTaotal" resultType="Integer">
+		select count(*) from log
+	</select>
+
+	<select id="getLogByDate" resultType="com.xxx.bean.Log">
+		select count(*) from log DESC group by log.log order by log.date
+	</select>
+
+	<select id="getLogResultByLog" resultType="com.xxx.bean.LogResult">
+		SELECT log.date ,log.log,COUNT(*) AS total from log
+		WHERE log.log = #{log}
+		GROUP BY log.date
+		ORDER BY log.date DESC
+	</select>
+
+	<select id="getLogResultByLogAndTime" resultType="com.xxx.bean.LogResult">
+		SELECT log.date ,log.log,COUNT(*) AS total from log
+		WHERE log.log=#{log} AND log.date &lt;=#{today} AND log.date &gt;= #{pastDay}
+		GROUP BY log.date
+		ORDER BY log.date DESC
+	</select>
+
+	<update id="updateEcharts">
+		UPDATE echarts
+		SET echarts.login=#{login},
+			echarts.register=#{register},
+			echarts.putActivate=#{putActivate},
+			echarts.attendActivate=#{attendActivate},
+		    echarts.all=#{all},
+		    echarts.date=#{date}
+			where idecharts=#{idecharts}
+
+-- 		UPDATE echarts
+-- 		SET echarts.login=1,
+-- 			echarts.register=1,
+-- 			echarts.putActivate=1,
+-- 			echarts.attendActivate=1,
+-- 			echarts.all=4,
+-- 			echarts.date='2021-11-23'
+-- 		where idecharts=8
+	</update>
+
+
+	<select id="getUserAboutThisTeacher" resultType="com.xxx.bean.User">
+		SELECT * FROM `user` WHERE `user`.iduser IN
+		(SELECT signup.username FROM signup,Activity
+		WHERE signup.activityID=Activity.activityId AND Activity.inChargeID=#{inChargeID} GROUP BY signup.username)
+	</select>
+
+
+	<select id="getActivityPeopleNum" resultType="com.xxx.bean.ActivityPeopleNumBean">
+		SELECT signup.activityID,COUNT(*) as Num
+		FROM Activity
+				 LEFT JOIN signup ON signup.activityID = Activity.activityId
+		WHERE signup.activityID IS NOT NULL
+		GROUP BY signup.activityID
+	</select>
+
+	<select id="getZeroActivityPeopleNum" resultType="java.lang.String">
+		SELECT Activity.activityID
+		FROM Activity
+				 LEFT JOIN signup ON signup.activityID = Activity.activityId
+		WHERE signup.activityID IS NULL
+	</select>
+
+</mapper>
+

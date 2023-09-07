@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>分步表单</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../lib/layui-v2.6.3/css/layui.css" media="all">
+    <link rel="stylesheet" href="../css/public.css" media="all">
+    <link rel="stylesheet" href="../js/lay-module/step-lay/step.css" media="all">
+	<style type="text/css">
+	/* 隐藏秒 */
+		.layui-laydate-content>.layui-laydate-list {
+		    padding-bottom: 0px;
+		    overflow: hidden;
+		}
+		.layui-laydate-content>.layui-laydate-list>li{
+		    width:50%
+		}
+		
+		.merge-box .scrollbox .merge-list {
+		    padding-bottom: 5px;
+		}
+	</style>
+
+</head>
+<body>
+<div class="layuimini-container">
+    <div class="layuimini-main">
+
+        <div class="layui-fluid">
+            <div class="layui-card" style="height: auto">
+                <div class="layui-card-body" style="padding-top: 40px;height: 700px;">
+                    <div class="layui-carousel" id="stepForm" lay-filter="stepForm" style="margin: 0 auto;">
+                        <div carousel-item style="height: 1000px;">
+                            <div>
+                                <form class="layui-form" style=" margin: 0 auto;max-width: 480px;padding-top: 40px;border:0;">
+                                   
+									<div class="layui-form-item" style="display: flex;">
+									    <label class="layui-form-label"style="width: 150px;">活动类型:</label>
+									    <div class="layui-input-block" style="margin-left: 5px;">
+									        <input id="activityType" type="text" placeholder="活动类型"style="width:320px;" value="" class="layui-input" lay-verify="text" required>
+									    </div>
+									</div>
+									<div class="layui-form-item" style="display: flex;">
+									    <label class="layui-form-label"style="width: 150px;">活动主题:</label>
+									    <div class="layui-input-block" style="margin-left: 5px;">
+									        <input id="activityTheme" type="text" placeholder="活动主题"style="width:320px;" value="" class="layui-input" lay-verify="text" required>
+									    </div>
+									</div>
+									<div class="layui-form-item" style="display: flex;">
+									    <label class="layui-form-label"style="width: 150px;">活动名称:</label>
+									    <div class="layui-input-block" style="margin-left: 5px;">
+									        <input id="activityName" type="text" placeholder="活动名称"style="width:320px;" value="" class="layui-input" lay-verify="text" required>
+									    </div>
+									</div>
+									<div class="layui-form-item" style="display: flex;">
+									    <label class="layui-form-label"style="width: 150px;">活动地点:</label>
+									    <div class="layui-input-block" style="margin-left: 5px;">
+									        <input id="ativityPlace" type="text" placeholder="活动地点"style="width:320px;" value="" class="layui-input" lay-verify="text" required>
+									    </div>
+									</div>
+                                    <div class="layui-form-item" style="display: flex;">
+                                        <label class="layui-form-label" style="width: 150px;">活动成员人数:</label>
+                                        <!-- <select id="menberTotal" name="quiz2">
+                                            <option value="">请选择人数（最多3人）</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                        </select> -->
+										<div class="layui-input-block" style="margin-left: 5px;">
+										    <input id="menberTotal" type="number" placeholder="活动成员人数" class="layui-input"  style="width:320px;"onblur="checkMemTotal()"lay-verify="number" required />
+										</div>
+                                    </div>
+									<div class="layui-form-item" style="display: flex;">
+									    <label class="layui-form-label" style="width: 150px;">负责人工号:</label>
+									    <div class="layui-input-block" style="margin-left: 5px;">
+									        <input id="inChargeID" type="text" placeholder="主负责人工号" class="layui-input" style="width:320px;"onblur="checkWorkNumber()"lay-verify="number" required />
+									    </div>
+									</div>
+									<div class="layui-form-item" style="display: flex;">
+										
+									    <label class="layui-form-label" style="width: 150px;">负责人手机号:</label>
+									    <div class="layui-input-block" style="margin-left: 5px;" >
+									        <input style="width: 320px;" id="inChargeNB" type="number" placeholder="负责人手机号" value="" class="layui-input"onblur="checkPhone()"lay-verify="number" required>
+									    </div>
+									</div>
+<!--                                    <div class="layui-form-item">-->
+<!--                                        <label class="layui-form-label">成员1姓名:</label>-->
+<!--                                        <div class="layui-input-block">-->
+<!--                                            <input id="menber1" type="text" placeholder="成员1姓名" class="layui-input" lay-verify="number" required />-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    <div class="layui-form-item">-->
+<!--                                        <label class="layui-form-label">成员2姓名:</label>-->
+<!--                                        <div class="layui-input-block">-->
+<!--                                            <input id="menber2" type="text" placeholder="成员1姓名" class="layui-input" lay-verify="number" required />-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    <div class="layui-form-item">-->
+<!--                                        <label class="layui-form-label">成员3姓名:</label>-->
+<!--                                        <div class="layui-input-block">-->
+<!--                                            <input id="menber3" type="text" placeholder="成员1姓名" class="layui-input" lay-verify="number" required />-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+                                    <!-- <div class="layui-form-item">
+                                        <label class="layui-form-label">备注说明:</label>
+                                        <div class="layui-input-block">
+                                            <textarea id="remark1" placeholder="备注" value="" class="layui-textarea"></textarea>
+                                        </div>
+                                    </div> -->
+                                    <div class="layui-form-item">
+                                        <div class="layui-input-block">
+                                            <button onclick="test1()" class="layui-btn" lay-submit lay-filter="formStep" style="margin: 0 77px;" id="test01" >
+                                                &emsp;下一步&emsp;
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div style="height: auto;">
+                                <form class="layui-form" style="margin: 0 auto;max-width: 480px;padding-top: 40px;height: auto;">
+									
+									
+                                    
+                                    
+
+                                    <div class="layui-form-item" style="display: flex;">
+                                        <label class="layui-form-label"style="width: 150px;">活动日期:</label>
+                                        <div class="layui-input-block" style="margin-left: 5px;">
+                                            <input id="ativityMoney" type="date" placeholder="活动时间"style="width:310px;" value="" class="layui-input" lay-verify="text" required>
+                                        </div>
+                                    </div>
+									
+									<div class="layui-form-item" style="display: flex;">
+										<label class="layui-form-label"style="width: 150px;">活动报名开始时间:</label>
+										<div class="layui-input-block" style="margin-left: 5px;">
+											        <input type="text" class="layui-input laydate" id="test4" placeholder="时:分"style="width:310px;">
+										</div>
+									</div>
+									
+									<div class="layui-form-item" style="display: flex;">
+										<label class="layui-form-label"style="width: 150px;">活动报名结束时间:</label>
+										<div class="layui-input-block" style="margin-left: 5px;">
+											        <input type="text" class="layui-input laydate" id="test5" placeholder="时:分"style="width:310px;"onblur="checkTime()">
+										</div>
+									</div>
+									
+									<div class="layui-form-item" style="display: flex;">
+										<label class="layui-form-label"style="width: 150px;">活动开始时间:</label>
+										<div class="layui-input-block" style="margin-left: 5px;">
+											        <input type="text" class="layui-input" id="test6" placeholder="时:分"style="width:310px;">
+										</div>
+									</div>
+									
+									<div class="layui-form-item" style="display: flex;">
+										<label class="layui-form-label"style="width: 150px;">活动结束时间:</label>
+										<div class="layui-input-block" style="margin-left: 5px;">
+											        <input type="text" class="layui-input" id="test7" placeholder="时:分"style="width:310px;">
+										</div>
+									</div>
+
+
+                                    <div class="layui-form-item" style="display: flex;">
+                                        <label class="layui-form-label"style="width: 150px;">活动内容:</label>
+                                        <div class="layui-input-block" style="margin-left: 5px;">
+                                            <textarea id="remark2" placeholder="活动内容" value=""style="width:310px;" class="layui-textarea"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <div class="layui-input-block">
+                                            <button type="button" class="layui-btn layui-btn-primary pre">上一步</button>
+                                            <button id="btn" class="layui-btn" lay-submit lay-filter="formStep2" onclick="test()">
+                                                &emsp;修改活动&emsp;
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div>
+                                <div style="text-align: center;margin-top: 90px;">
+                                    <i class="layui-icon layui-circle"
+                                       style="color: white;font-size:30px;font-weight:bold;background: #52C41A;padding: 20px;line-height: 80px;">&#xe605;</i>
+                                    <div style="font-size: 24px;color: #333;font-weight: 500;margin-top: 30px;">
+                                        修改成功
+                                    </div>
+                                </div>
+                                <div style="text-align: center;margin-top: 50px;">
+                                    <!--<form action="http://localhost:8080/QRServlet">-->
+                                    <form action="http://106.54.189.155:8080/QRServlet">
+										<button type="submit" class="layui-btn next">查看签到二维码</button>
+									</form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+<!--                    <div style="color: #666;margin-top: 30px;margin-bottom: 40px;padding-left: 30px;">-->
+<!--                        <h3>说明</h3><br>-->
+<!--                        <h4>入款到保险箱</h4>-->
+<!--                        <p>如果需要，这里可以放一些关于产品的常见问题说明。</p>-->
+<!--                        <br><h4>入款到现金</h4>-->
+<!--                        <p>如果需要，这里可以放一些关于产品的常见问题说明。</p>-->
+<!--                    </div>-->
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="./JQ.js"></script>
+<script>
+    var inChargeID;
+    var inChargeNB;
+    var menberTotal;
+    var test1 = function (){
+          inChargeID= document.getElementById("inChargeID").value;//负责人工号:
+          inChargeNB= document.getElementById("inChargeNB").value;//负责人手机号
+          menberTotal= document.getElementById("menberTotal").value;//活动成员人数
+         // var menber1= document.getElementById("menber1").value;//活动成员1的名字
+         // var menber2= document.getElementById("menber2").value;//活动成员2的名字
+         // var menber3= document.getElementById("menber3").value;//活动成员3的名字
+         // var remark1= document.getElementById("remark1").value;//备注说明1
+
+        // alert("inChargeID"+inChargeID);
+        // alert("inChargeNB"+inChargeNB);
+        // alert("menberTotal"+menberTotal);
+        // // alert("a"+menber1);
+        // // alert("a"+menber2);
+        // // alert("a"+menber3);
+        // alert("remark1"+remark1);
+			
+		// if(inChargeID.length=11||inChargeID<0){
+		// 	alert('负责人工号只能输入11位数！！！');
+			
+		// }
+		// else if (inChargeNB.length!=11||inChargeNB<0){
+		// 	alert('手机号码格式不正确，请重新输入！！！');
+		// }
+		// else if(menberTotal>50||menberTotal<0){
+		// 	alert('活动成员人数只能取0~50！！！');
+		// }
+		// if(inChargeID.length=11&&&&inChargeNB.length==11&&menberTotal<50&&menberTotal>0){
+		// 	var oTest01  = document.getElementById("test01");
+		// 	oTest01.setAttribute("lay-submit","formStep");
+		// 	oTest01.setAttribute("lay-filter","formStep");
+		// }
+		
+    }
+	var checkWorkNumber=function(){
+		inChargeID= document.getElementById("inChargeID").value;
+		if(inChargeID.length!=1||inChargeID<0){
+			alert('负责人工号只能输入11位数！！！');
+		}
+	}
+	var checkPhone=function(){
+		inChargeNB= document.getElementById("inChargeNB");
+		reg = /^1(3[0-9]|4[01456879]|5[0-35-9]|6[2567]|7[0-8]|8[0-9]|9[0-35-9])\d{8}$/;
+		if (inChargeNB.value == "") {
+			alert("请输入电话号码");
+			return false;
+		}
+		else if (!reg.test(inChargeNB.value)) {
+			alert("电话号码格式不正确，请重新输入!");
+			return false;
+		}
+	}
+	var checkMemTotal=function(){
+		menberTotal= document.getElementById("menberTotal").value;
+		if(menberTotal>50||menberTotal<0){
+			alert('活动总人数只能取0~50！！！');
+		}
+	}
+
+    var test = function (){
+		var activityName= document.getElementById("activityType").value;//活动类型
+		var activityName= document.getElementById("activityTheme").value;//活动主题
+        var activityName= document.getElementById("activityName").value;//活动名字
+        var ativityPlace= document.getElementById("ativityPlace").value;//活动地点
+        var ativityTime= document.getElementById("ativityMoney").value;//活动时间
+		var ativityTime= document.getElementById("ativityStartMoney").value;//活动开始时间
+		var ativityTime= document.getElementById("ativityEndMoney").value;//活动结束时间
+        var remark= document.getElementById("remark2").value;//活动备注
+		
+
+        // alert("activityName"+activityName);
+        // alert("ativityPlace"+ativityPlace);
+        // alert("ativityMoney"+ativityMoney);
+        // alert("remark2"+remark2);
+
+        // alert(a);
+        // $.post(
+        //     "http://localhost/test",
+        //     {"activateID":a},
+        //     function (data,state){
+        //         alert("收到数据："+data+"状态："+state);
+        //
+        //     }
+        // );
+		// alert("test01");
+		// alert(inChargeID+inChargeNB+menberTotal+activityName+ativityPlace+ativityTime+remark)
+
+		$.post(
+		    //TODO ActivityData
+		    // "http://localhost:8080/ActivityData",
+            "http://106.54.189.155:8080/ActivityData",
+		    {
+		        "name":"form-step",
+				"inChargeID":inChargeID,
+				"inChargeNB":inChargeNB,
+				"menberTotal":menberTotal,
+				"activityName":activityName,
+				"ativityPlace":ativityPlace,
+				"ativityTime":ativityTime,
+				"remark":remark
+		    },
+		    function(data,status){
+		        // alert("数据: \n" + data + "\n状态: " + status);
+		});
+		
+    }
+</script>
+<script src="../lib/layui-v2.6.3/layui.js" charset="utf-8"></script>
+<script src="../js/lay-config.js?v=1.0.4" charset="utf-8"></script>
+<script>
+    layui.use([ 'form', 'step'], function () {
+        var $ = layui.$,
+            form = layui.form,
+            step = layui.step;
+
+        step.render({
+            elem: '#stepForm',
+            filter: 'stepForm',
+            width: '100%', //设置容器宽度
+            stepWidth: '750px',
+            height: '500px',
+            stepItems: [{
+                title: '修改活动信息'
+            }, {
+                title: '修改活动时间信息'
+            }, {
+                title: '完成'
+            }]
+        });
+
+
+        form.on('submit(formStep)', function (data) {
+            step.next('#stepForm');
+			var a=document.getElementById('inChargeID').value;
+			var b=document.getElementById('inChargeNB').value;
+			var c=document.getElementById('menberTotal').value;
+			// if(a.length<11||a>0||b.length=11||b.length>0||c.length<50||c>0)
+				return false;
+        });
+
+        form.on('submit(formStep2)', function (data) {
+            step.next('#stepForm');
+            return false;
+        });
+
+        $('.pre').click(function () {
+            step.pre('#stepForm');
+        });
+
+        $('.next').click(function () {
+            step.next('#stepForm');
+        });
+    })
+	
+	// 时间选择器
+	layui.use('laydate', function(){
+	  var laydate = layui.laydate;
+	  laydate.render({
+	    elem: '#test4'
+	    ,type: 'time'
+	  });
+	  
+	  laydate.render({
+	    elem: '#test5'
+	    ,type: 'time'
+	  });
+	  laydate.render({
+	    elem: '#test6'
+	    ,type: 'time'
+	  });
+	  laydate.render({
+	    elem: '#test7'
+	    ,type: 'time'
+	  });
+	})
+</script>
+<script src="//res.layuion.com/layui/dist/layui.js" charset="utf-8"></script>
+
+
+</body>
+</html>
